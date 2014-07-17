@@ -5,6 +5,12 @@ public class TravelingSalesman {
 	 * return ordered list of cities constituting shortest travel route 
 	 * given a start city and list of distances between cities
 	 * 
+	 * precondition: cityMap is a complete map
+	 * precondition: startCity is a member of cityMap
+	 * precondition: all members of route are members of cityMap
+	 * 
+	 * postcondition: route will contain the shortest route that visits all cities
+	 * 
 	 * @param startCity
 	 * @param cityList
 	 * @return
