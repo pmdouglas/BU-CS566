@@ -14,6 +14,8 @@ public class TravelingSalesmanTest {
 	private	City city3 = new City();
 	private	City city4 = new City();
 	private	City city5 = new City();
+	private City city6 = new City();
+	private City city7 = new City();
 	
 	@Before
 	public void setUp() throws Exception {
@@ -22,6 +24,8 @@ public class TravelingSalesmanTest {
 		city3.index = 3;
 		city4.index = 4;
 		city5.index = 5;
+		city6.index = 6;
+		city7.index = 7;
 		
 		smallCityMap = new CityMap();
 
@@ -31,16 +35,32 @@ public class TravelingSalesmanTest {
 
 		bigCityMap = new CityMap();
 		
-		bigCityMap.addCityPair(city1, city2, 1);
+		bigCityMap.addCityPair(city1, city2, 1000);
 		bigCityMap.addCityPair(city1, city3, 3);
 		bigCityMap.addCityPair(city1, city4, 6);
-		bigCityMap.addCityPair(city1, city5, 3);
-		bigCityMap.addCityPair(city2, city3, 2);
-		bigCityMap.addCityPair(city2, city4, 5);
+		bigCityMap.addCityPair(city1, city5, 30);
+		bigCityMap.addCityPair(city1, city6, 2);
+		bigCityMap.addCityPair(city1, city7, 5);
+		
+		bigCityMap.addCityPair(city2, city3, 1);
+		bigCityMap.addCityPair(city2, city4, 3);
 		bigCityMap.addCityPair(city2, city5, 1);
-		bigCityMap.addCityPair(city3, city4, 3);
-		bigCityMap.addCityPair(city3, city5, 1);
+		bigCityMap.addCityPair(city2, city6, 4);
+		bigCityMap.addCityPair(city2, city7, 7);
+		
+		bigCityMap.addCityPair(city3, city4, 2);
+		bigCityMap.addCityPair(city3, city5, 5);
+		bigCityMap.addCityPair(city3, city6, 10);
+		bigCityMap.addCityPair(city3, city7, 4);
+		
 		bigCityMap.addCityPair(city4, city5, 4);
+		bigCityMap.addCityPair(city4, city6, 3);
+		bigCityMap.addCityPair(city4, city7, 7);
+		
+		bigCityMap.addCityPair(city5, city6, 2);
+		bigCityMap.addCityPair(city5, city7, 9);
+		
+		bigCityMap.addCityPair(city6, city7, 4);
 		
 		incompleteCityMap = new CityMap();
 		incompleteCityMap.addCityPair(city1,city2,1);
@@ -59,6 +79,15 @@ public class TravelingSalesmanTest {
 		TravelingSalesman ts = new TravelingSalesman();
 		Route route = ts.findBestRoute(city1, new Route(city1),bigCityMap);
 		System.out.println("Distance " + route.getDistanceTraveled());
+		System.out.println("Number of recursive calls to find result " + ts.getRouteCount());
+		route.printRoute();
+	}
+	@Test
+	public void testFindBestRouteDynamically(){
+		TravelingSalesman ts = new TravelingSalesman();
+		Route route = ts.findBestRouteDynamically(city1, new Route(city1),bigCityMap);
+		System.out.println("Distance " + route.getDistanceTraveled());
+		System.out.println("Number of recursive calls to find result " + ts.getRouteCount());
 		route.printRoute();
 	}
 	@Test 
